@@ -1,5 +1,6 @@
 package com.todoist.developer.rest.acceptance.task.create;
 
+import com.github.dzieciou.testing.curl.CurlLoggingRestAssuredConfigFactory;
 import com.todoist.developer.rest.acceptance.BaseTest;
 import com.todoist.developer.rest.acceptance.dataprovider.task.create.CreateNewTasksDataProvider;
 import com.todoist.developer.rest.acceptance.enums.Endpoint;
@@ -8,6 +9,8 @@ import com.todoist.developer.rest.acceptance.model.task.TaskRequestBody;
 import com.todoist.developer.rest.acceptance.model.task.TaskResponseBody;
 import com.todoist.developer.rest.acceptance.utils.StringUtils;
 import io.restassured.RestAssured;
+import io.restassured.config.RestAssuredConfig;
+import io.restassured.http.ContentType;
 import io.restassured.mapper.ObjectMapperType;
 import io.restassured.response.Response;
 import org.testng.annotations.Listeners;
@@ -111,10 +114,12 @@ public class CreateNewTasksAcceptanceTests extends BaseTest {
     }
 
     private Response sendCreateTaskRequest(TaskRequestBody body) {
+        RestAssuredConfig config = CurlLoggingRestAssuredConfigFactory.createConfig();
         return RestAssured
                 .given()
                 .log().all()
-                .contentType("application/json")
+                .config(config)
+                .contentType(ContentType.JSON)
                 .header("X-Request-Id", getUUID())
                 .header("Authorization", "Bearer " + getToken())
                 .body(body, ObjectMapperType.JACKSON_2)
