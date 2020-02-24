@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="cnt" parallel="false">
+    <listeners>
+        <listener class-name="com.todoist.developer.rest.acceptance.reporter.TestReporter"/>
+    </listeners>
+    <test name="cnt">
+        <classes>
+            <class name="com.todoist.developer.rest.acceptance.task.create.CreateNewTasksAcceptanceTests" />
+        </classes>
+    </test>
+</suite>
