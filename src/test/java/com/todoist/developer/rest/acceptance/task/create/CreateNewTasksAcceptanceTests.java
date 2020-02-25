@@ -10,12 +10,12 @@ import com.todoist.developer.rest.acceptance.model.task.TaskResponseBody;
 import com.todoist.developer.rest.acceptance.utils.StringUtils;
 import io.restassured.RestAssured;
 import io.restassured.config.RestAssuredConfig;
-import io.restassured.http.ContentType;
 import io.restassured.mapper.ObjectMapperType;
 import io.restassured.response.Response;
 import org.testng.annotations.Listeners;
 import org.testng.annotations.Test;
 
+import static io.restassured.config.EncoderConfig.encoderConfig;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 
@@ -118,8 +118,8 @@ public class CreateNewTasksAcceptanceTests extends BaseTest {
         return RestAssured
                 .given()
                 .log().all()
-                .config(config)
-                .contentType(ContentType.JSON)
+                .config(config.encoderConfig(encoderConfig().appendDefaultContentCharsetToContentTypeIfUndefined(false)))
+                .header("Content-Type", "application/json")
                 .header("X-Request-Id", getUUID())
                 .header("Authorization", "Bearer " + getToken())
                 .body(body, ObjectMapperType.JACKSON_2)

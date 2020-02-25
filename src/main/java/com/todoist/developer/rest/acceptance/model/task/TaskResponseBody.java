@@ -8,10 +8,12 @@ public class TaskResponseBody {
     private Boolean completed;
     private String content;
     private Due due;
-    private Integer id;
+    private Long id;
+    private Integer[] label_ids;
     private Integer order;
     private Integer priority;
-    private Integer project_id;
+    private Long project_id;
     private Integer section_id;
-    private Integer url;
+    private String created;
+    private String url;
 }

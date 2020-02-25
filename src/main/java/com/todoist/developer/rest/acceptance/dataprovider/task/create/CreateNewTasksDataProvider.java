@@ -6,7 +6,7 @@ import org.testng.annotations.DataProvider;
 
 public class CreateNewTasksDataProvider {
 
-    @DataProvider(name="createNewTask45")
+    @DataProvider(name = "createNewTask45")
     private Object[][] createNewTask45() {
         return new Object[][]{
                 {new TaskRequestBody()
@@ -24,12 +24,13 @@ public class CreateNewTasksDataProvider {
         };
     }
 
-    @DataProvider(name="createNewTask13")
+    @DataProvider(name = "createNewTask13")
     private Object[][] createNewTask13() {
         return new Object[][]{
                 {new TaskRequestBody()
                         .setContent(StringUtils.randomAlphabeticString(40))},
                 {new TaskRequestBody()
-                        .setContent(StringUtils.randomAlphanumericString(30))}};
+                        .setContent(StringUtils.randomAlphanumericString(30))}
+        };
     }
 }
